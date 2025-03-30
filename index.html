@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="bird">Audio description: <span></span></div>
+</body>
+</html>
+
+<script>
+    const query = "cnt:brazil";
+    const xenocanto = `https://www.xeno-canto.org/api/2/recordings?query=${query}`;
+    const bird_recording_desc = document.querySelector("span");
+    fetch(xenocanto)
+        .then(response => response.json())
+        .then(data => 
+            {
+                const sample = data.recordings[Math.floor(Math.random() * data.recordings.length)];
+                bird_recording_desc.innerText = sample.rmk;
+            })
+</script>
